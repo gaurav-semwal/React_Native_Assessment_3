@@ -23,18 +23,30 @@ import {
   Shoe5,
   Shoe6,
   Heart,
+  Redheart,
 } from './asset/svgs';
 import Color from './Ui/color';
 
 const windowWidth = Dimensions.get('window').width;
 
-// const Heartcheck = ({isHeartPressed}) => {
-//   return (
-//     <TouchableOpacity style={styles.heartIcon}>
-//       {isHeartPressed ? <Redheart /> : <Heart />}
-//     </TouchableOpacity>
-//   );
-// };
+const Fun = () => {
+  const [change, setChange] = useState(true);
+  const checkWork = () => {
+    if (change) {
+      setChange(false);
+    } else {
+      setChange(true);
+    }
+  };
+  return (
+    <TouchableOpacity onPress={checkWork}>
+      <View style={styles.heart}>
+        {change && <Heart />}
+        {!change && <Redheart style={{height: 20, width: 20}} />}
+      </View>
+    </TouchableOpacity>
+  );
+};
 
 const App = () => {
   const shoeData = [
@@ -115,15 +127,7 @@ const App = () => {
     <View style={[styles.shoeItem, {width: windowWidth / 2 - 20}]}>
       {item.svg()}
       <View style={styles.heartContainer}>
-        <TouchableOpacity onPress={() => toggleHeart(item.id)}>
-          <Heart
-            style={[
-              styles.heartIcon,
-              {tintColor: item.heart ? 'red' : 'black'},
-            ]}>
-            {item.heart}
-          </Heart>
-        </TouchableOpacity>
+        <Fun />
       </View>
       <View style={styles.textContainer}>
         <View style={styles.textContent}>
