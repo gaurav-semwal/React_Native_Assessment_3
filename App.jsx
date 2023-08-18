@@ -22,33 +22,12 @@ import {
   Shoe4,
   Shoe5,
   Shoe6,
-  Redheart,
   Heart,
 } from './asset/svgs';
 import Color from './Ui/color';
 
 const windowWidth = Dimensions.get('window').width;
 
-const Heartcheck = () => {
-  const heart1 = <Heart />;
-  const heart2 = <Redheart />;
-  const [heart, setHeart] = useState(false);
-  const check = () => {
-    if (heart) {
-      setHeart(false);
-    } else {
-      setHeart(true);
-    }
-  };
-  return (
-    <TouchableOpacity
-      style={[styles.heartIcon, {tintColor: item.heart ? 'red' : 'black'}]}
-      onPress={check}>
-      {heart && heart2}
-      {!heart && heart1}
-    </TouchableOpacity>
-  );
-};
 const App = () => {
   const shoeData = [
     {
@@ -127,8 +106,17 @@ const App = () => {
   const renderItem = ({item}) => (
     <View style={[styles.shoeItem, {width: windowWidth / 2 - 20}]}>
       {item.svg()}
-      <Heartcheck />
-      <View style={styles.heartContainer}></View>
+      <View style={styles.heartContainer}>
+        <TouchableOpacity onPress={() => toggleHeart(item.id)}>
+          <Heart
+            style={[
+              styles.heartIcon,
+              {tintColor: item.heart ? 'red' : 'black'},
+            ]}>
+            {item.heart}
+          </Heart>
+        </TouchableOpacity>
+      </View>
       <View style={styles.textContainer}>
         <View style={styles.textContent}>
           <Text style={styles.shoeName}>{item.name}</Text>
@@ -138,6 +126,17 @@ const App = () => {
       </View>
     </View>
   );
+  const [shoeList, setShoeList] = useState(
+    shoeData.map((shoe, index) => ({...shoe, id: index, heart: false})),
+  );
+
+  const toggleHeart = id => {
+    setShoeList(prevList =>
+      prevList.map(shoe =>
+        shoe.id === id ? {...shoe, heart: !shoe.heart} : shoe,
+      ),
+    );
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -205,7 +204,7 @@ const styles = StyleSheet.create({
     backgroundColor: Color.WhiteSmoke,
   },
   content: {
-    flexDirection: 'row',
+    flexDirection: 'row', 
     alignItems: 'center',
     paddingVertical: 10,
     paddingHorizontal: 20,
