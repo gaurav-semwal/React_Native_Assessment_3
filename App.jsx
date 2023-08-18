@@ -51,72 +51,84 @@ const Fun = () => {
 const App = () => {
   const shoeData = [
     {
+      id: 1,
       name: 'Nike',
       svg: Shoe1,
       additionalText: 'Air Force 1 Jester XX Black Sonic Yellow ...',
       price: '$96',
     },
     {
+      id: 1,
       name: 'Converse',
       svg: Shoe2,
       additionalText: 'Run Star Hike Three Color Unisex',
       price: '$85.5',
     },
     {
+      id: 3,
       name: 'Nike',
       svg: Shoe3,
       additionalText: 'Air Jordan 1 Retro High Obsidian UNC ',
       price: '$196',
     },
     {
+      id: 4,
       name: 'Nike',
       svg: Shoe4,
       additionalText: 'Air Force 1 Shadow Beige Pale Ivory',
       price: '$115',
     },
     {
+      id: 5,
       name: 'New Balance',
       svg: Shoe5,
       additionalText: 'Men 574 Legacy Sport Shoes',
       price: '$165.8',
     },
     {
+      id: 6,
       name: 'Asics',
       svg: Shoe6,
       additionalText: 'Asics Men Running Shoes',
       price: '$65',
     },
     {
+      id: 7,
       name: 'Nike',
       svg: Shoe1,
       additionalText: 'Air Force 1 Jester XX Black Sonic Yellow ...',
       price: '$96',
     },
     {
+      id: 8,
       name: 'Converse',
       svg: Shoe2,
       additionalText: 'Run Star Hike Three Color Unisex',
       price: '$85.5',
     },
     {
+      id: 9,
       name: 'Nike',
       svg: Shoe3,
       additionalText: 'Air Jordan 1 Retro High Obsidian UNC ',
       price: '$196',
     },
     {
+      id: 10,
       name: 'Nike',
       svg: Shoe4,
       additionalText: 'Air Force 1 Shadow Beige Pale Ivory',
       price: '$115',
     },
     {
+      id: 11,
       name: 'New Balance',
       svg: Shoe5,
       additionalText: 'Men 574 Legacy Sport Shoes',
       price: '$165.8',
     },
     {
+      id: 12,
       name: 'Asics',
       svg: Shoe6,
       additionalText: 'Asics Men Running Shoes',
@@ -171,16 +183,16 @@ const App = () => {
           </View>
         </View>
       </View>
-      <ScrollView style={styles.scrollView}>
-        <FlatList
-          data={shoeList}
-          keyExtractor={item => item.id.toString()}
-          numColumns={2}
-          renderItem={renderItem}
-          contentContainerStyle={styles.frameContainer}
-          columnWrapperStyle={styles.columnWrapper}
-        />
-      </ScrollView>
+
+      <FlatList
+        data={shoeList}
+        keyExtractor={item => item.id}
+        numColumns={2}
+        renderItem={renderItem}
+        contentContainerStyle={styles.frameContainer}
+        columnWrapperStyle={styles.columnWrapper}
+        style={styles.scrollView}
+      />
     </SafeAreaView>
   );
 };
