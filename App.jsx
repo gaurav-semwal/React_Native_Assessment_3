@@ -28,6 +28,14 @@ import Color from './Ui/color';
 
 const windowWidth = Dimensions.get('window').width;
 
+// const Heartcheck = ({isHeartPressed}) => {
+//   return (
+//     <TouchableOpacity style={styles.heartIcon}>
+//       {isHeartPressed ? <Redheart /> : <Heart />}
+//     </TouchableOpacity>
+//   );
+// };
+
 const App = () => {
   const shoeData = [
     {
@@ -204,7 +212,7 @@ const styles = StyleSheet.create({
     backgroundColor: Color.WhiteSmoke,
   },
   content: {
-    flexDirection: 'row', 
+    flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: 10,
     paddingHorizontal: 20,
@@ -240,8 +248,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 15,
     backgroundColor: 'white',
-    padding: 10, // Reduced padding here
-    width: windowWidth / 2 - 30, // Reduced width here
+    padding: 10,
+    width: windowWidth / 2 - 30,
     borderRightColor: 'white',
   },
   productInfoContainer: {
