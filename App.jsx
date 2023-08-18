@@ -6,7 +6,6 @@ import {
   TextInput,
   View,
   Text,
-  ScrollView,
   FlatList,
   Dimensions,
   TouchableOpacity,
@@ -40,7 +39,14 @@ const Fun = () => {
   };
   return (
     <TouchableOpacity onPress={checkWork}>
-      <View style={styles.heart}>
+      <View
+        style={{
+          heart: {
+            position: 'absolute',
+            right: 10,
+            top: 15,
+          },
+        }}>
         {change && <Heart />}
         {!change && <Redheart style={{height: 20, width: 20}} />}
       </View>
@@ -51,84 +57,84 @@ const Fun = () => {
 const App = () => {
   const shoeData = [
     {
-      id: 1,
+      id: 11,
       name: 'Nike',
       svg: Shoe1,
       additionalText: 'Air Force 1 Jester XX Black Sonic Yellow ...',
       price: '$96',
     },
     {
-      id: 1,
+      id: 12,
       name: 'Converse',
       svg: Shoe2,
       additionalText: 'Run Star Hike Three Color Unisex',
       price: '$85.5',
     },
     {
-      id: 3,
+      id: 13,
       name: 'Nike',
       svg: Shoe3,
       additionalText: 'Air Jordan 1 Retro High Obsidian UNC ',
       price: '$196',
     },
     {
-      id: 4,
+      id: 14,
       name: 'Nike',
       svg: Shoe4,
       additionalText: 'Air Force 1 Shadow Beige Pale Ivory',
       price: '$115',
     },
     {
-      id: 5,
+      id: 15,
       name: 'New Balance',
       svg: Shoe5,
       additionalText: 'Men 574 Legacy Sport Shoes',
       price: '$165.8',
     },
     {
-      id: 6,
+      id: 16,
       name: 'Asics',
       svg: Shoe6,
       additionalText: 'Asics Men Running Shoes',
       price: '$65',
     },
     {
-      id: 7,
+      id: 17,
       name: 'Nike',
       svg: Shoe1,
       additionalText: 'Air Force 1 Jester XX Black Sonic Yellow ...',
       price: '$96',
     },
     {
-      id: 8,
+      id: 18,
       name: 'Converse',
       svg: Shoe2,
       additionalText: 'Run Star Hike Three Color Unisex',
       price: '$85.5',
     },
     {
-      id: 9,
+      id: 19,
       name: 'Nike',
       svg: Shoe3,
       additionalText: 'Air Jordan 1 Retro High Obsidian UNC ',
       price: '$196',
     },
     {
-      id: 10,
+      id: 20,
       name: 'Nike',
       svg: Shoe4,
       additionalText: 'Air Force 1 Shadow Beige Pale Ivory',
       price: '$115',
     },
     {
-      id: 11,
+      id: 21,
       name: 'New Balance',
       svg: Shoe5,
       additionalText: 'Men 574 Legacy Sport Shoes',
       price: '$165.8',
     },
     {
-      id: 12,
+      id: 22,
       name: 'Asics',
       svg: Shoe6,
       additionalText: 'Asics Men Running Shoes',
@@ -150,17 +156,8 @@ const App = () => {
       </View>
     </View>
   );
-  const [shoeList, setShoeList] = useState(
-    shoeData.map((shoe, index) => ({...shoe, id: index, heart: false})),
-  );
 
-  const toggleHeart = id => {
-    setShoeList(prevList =>
-      prevList.map(shoe =>
-        shoe.id === id ? {...shoe, heart: !shoe.heart} : shoe,
-      ),
-    );
-  };
+  const [shoeList] = useState(shoeData.map(shoe => ({...shoe, heart: false})));
 
   return (
     <SafeAreaView style={styles.container}>
@@ -218,10 +215,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 10,
     right: 10,
-  },
-  heartIcon: {
-    width: 20,
-    height: 20,
   },
   container: {
     flex: 1,
